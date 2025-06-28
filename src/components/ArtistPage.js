@@ -17,7 +17,7 @@ const ArtistPage = () => {
     1: { name: '임영웅', image: `${임영웅}` },
     2: { name: '김호중', image: `${김호중}` },
     3: { name: '박지현', image: `${박지현}` },
-    4: { name: '형탁', image: `${영탁}` },
+    4: { name: '영탁', image: `${영탁}` },
     5: { name: '이찬원', image: `${이찬원}` }
   };
 
