@@ -1,3 +1,6 @@
+
+
+
 .schedule-page {
   min-height: 100vh;
   background: linear-gradient(135deg,#FFCAB3     0%, #FFCAB3     100%);
@@ -56,7 +59,7 @@
 .artist-image {
   width: 200px;
   height: 200px;
-  border-radius: 12%;
+  border-radius: 50%;
   margin-bottom: 20px;
   object-fit: cover;
 }
@@ -153,6 +156,16 @@
   color: white;
 }
 
+.calendar-date.has-schedule.selected:hover {
+  background: #007bff;
+  color: white;
+}
+
+.calendar-date.selected:hover {
+  background: #007bff;
+  color: white;
+}
+
 .schedule-details {
   border-top: 2px solid #BDA79D;
   padding-top: 20px;
@@ -215,4 +228,47 @@
   .calendar-section {
     order: 1;
   }
-} 
+}
+
+
+
+#inputBox{
+  width: 100%;
+  text-decoration: none;
+  font-size: 16px;
+  height: 100px;
+}
+
+#saveBtn{
+  width: 100%;
+  border: none;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #ffffff;
+  transition: background-color 0.2s;
+}
+
+#saveBtn:hover{
+  background-color: #f8f9fa;
+
+}
+
+
+#saveBtn:active{
+
+  background-color: #007bff;
+
+}
+
+
+
+.saved-memo{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+
+

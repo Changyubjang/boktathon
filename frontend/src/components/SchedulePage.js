@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+
+
+
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './SchedulePage.css';
 import 임영웅 from '../img/profile/임영웅.jpg.webp';
@@ -11,41 +14,40 @@ const SchedulePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [memo, setMemo] = useState(''); // For storing the memo
+  const [savedMemo, setSavedMemo] = useState(''); // To store and display the saved memo
+  const [scheduleData, setScheduleData] = useState(null); // Store the fetched schedule data
+  const [schedule, setSchedule] = useState(null); // State for the schedule
 
   // 샘플 아티스트 데이터
   const artistData = {
     1: { name: '임영웅', image: `${임영웅}` },
     2: { name: '김호중', image: `${김호중}` },
     3: { name: '박지현', image: `${박지현}` },
-    4: { name: '영탁', image: `${영탁}` },
+    4: { name: '형탁', image: `${영탁}` },
     5: { name: '이찬원', image: `${이찬원}` },
   };
 
-
-
-
+  const data1 ={
+    "success": true,
+    "code": 200,
+    "message": "일정 및 메모 조회 성공",
+    "data": {
+      "artist": "임영웅",
+      "date": "2024-12-15",
+      "schedule": "서울 KSPO DOME 콘서트",
+      "memo": {
+        "id": 7,
+        "username": "지윤",
+        "description": "이ㅏㅣ리ㅏ뤼ㅏ리라ㅜ"
+      }
+    }
+  }
 
   const artist = artistData[id] || { name: 'Unknown Artist', image: 'https://via.placeholder.com/200x200/999/white?text=Unknown' };
 
-  // 샘플 일정 데이터 (트로트 관련)
-  const scheduleData = {
-    '2024-01-15': { title: '트로트 콘서트', location: '올림픽공원', time: '19:00' },
-    '2024-01-20': { title: '팬사인회', location: '코엑스몰', time: '14:00' },
-    '2024-01-25': { title: '앨범 발매', location: '온라인', time: '00:00' },
-    '2024-02-01': { title: '방송 출연', location: 'KBS 트로트의 민족', time: '20:00' },
-    '2024-02-10': { title: '지방 공연', location: '부산 해운대', time: '18:00' },
-    '2024-02-15': { title: '팬미팅', location: '서울 시청', time: '15:00' },
-  };
-
-  const handleBackClick = () => {
-    navigate(`/artist/${id}`);
-  };
-
   const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = (`0${date.getMonth() + 1}`).slice(-2);
-    const day = (`0${date.getDate()}`).slice(-2);
-    return `${year}-${month}-${day}`;
+    return date.toISOString().split('T')[0];
   };
 
   const getCurrentMonthDates = () => {
@@ -68,14 +70,95 @@ const SchedulePage = () => {
     return dates;
   };
 
-  const handleDateClick = (date) => {
+  const handleDateClick = async (date) => {
     if (date) {
       setSelectedDate(date);
+
+      // API 호출 (GET 요청)
+      try {
+        const response = await fetch('https://your-api-endpoint.com', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(selectedDate.toLocaleDateString('ko-KR')), // JSON 데이터로 변환하여 전송
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setScheduleData(data); // 업데이트된 일정 데이터 저장
+          const schedule1 = data.meals[0].strMeal;
+          const memo1 = data.meals[0].strInstructions;
+          console.log(schedule1);
+          console.log(memo1);
+
+          setSchedule(data1.data.schedule); // 상태 업데이트
+          setSavedMemo(data1.data.memo.description); // 상태 업데이트 (description을 savedMemo에 설정)
+          console.log(data1.data.schedule); // 로그로 확인
+        } else {
+          alert('일정 데이터를 가져오는 데 실패했습니다.');
+        }
+      } catch (error) {
+        alert('API 호출 중 오류가 발생했습니다.');
+      }
     }
   };
 
-  const currentDateStr = formatDate(selectedDate);
-  const currentSchedule = scheduleData[currentDateStr];
+  const handleBackClick = () => {
+    navigate(`/artist/${id}`);
+  };
+
+  const handleMemoInputChange = (e) => {
+    setMemo(e.target.value);
+  };
+  // const formattedDate = formatDate(selectedDate);
+
+
+const handleSaveMemo = async (e) => {
+  e.preventDefault();
+
+  console.log(selectedDate.toLocaleDateString('ko-KR'));
+
+  // selectedDate를 문자열 형식으로 변환 (YYYY-MM-DD 형식)
+  
+  // 메모를 description으로 설정하여 요청 데이터 준비
+  const postData = {
+    username: "지윤",
+    date: selectedDate.toLocaleDateString('ko-KR'),
+    artist: "임영웅",
+    description: memo, // 입력한 메모를 description에 설정
+  };
+
+  try {
+    // POST 요청을 보내는 코드
+    const response = await fetch('https://your-api-endpoint.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData), // JSON 데이터로 변환하여 전송
+    });
+
+    if (response.ok) {
+      alert('메모가 저장되었습니다.');
+
+      // 메모 저장 후 화면에 바로 반영
+      setSavedMemo(memo); // 메모 상태 업데이트
+      setMemo(''); // 메모 입력 필드 초기화
+
+      // 저장된 메모를 가져오기 위한 API 호출
+      await handleDateClick(selectedDate); // 해당 날짜의 데이터를 다시 가져옴
+    } else {
+      alert('메모 저장에 실패했습니다.');
+    }
+  } catch (error) {
+    alert('API 호출 중 오류가 발생했습니다.');
+  }
+};
+
+
+
 
   return (
     <div className="schedule-page">
@@ -112,8 +195,8 @@ const SchedulePage = () => {
                   <div
                     key={index}
                     className={`calendar-date ${date ? 'has-date' : 'empty'} ${
-                      date && formatDate(date) === currentDateStr ? 'selected' : ''
-                    } ${date && scheduleData[formatDate(date)] ? 'has-schedule' : ''}`}
+                      date && formatDate(date) === formatDate(selectedDate) ? 'selected' : ''
+                    } ${date && scheduleData?.data?.schedule && formatDate(date) === formatDate(selectedDate) ? 'has-schedule' : ''}`}
                     onClick={() => handleDateClick(date)}
                   >
                     {date ? date.getDate() : ''}
@@ -125,15 +208,33 @@ const SchedulePage = () => {
 
           <div className="schedule-details">
             <h3>선택된 날짜: {selectedDate.toLocaleDateString('ko-KR')}</h3>
-            {currentSchedule ? (
+            {schedule ? (
               <div className="schedule-item">
-                <h4>{currentSchedule.title}</h4>
-                <p>📍 {currentSchedule.location}</p>
-                <p>🕐 {currentSchedule.time}</p>
+                <div>{schedule}</div>
               </div>
             ) : (
               <p className="no-schedule">해당 날짜에 일정이 없습니다.</p>
             )}
+
+            {/* Display the saved memo */}
+            {savedMemo && (
+              <div className="saved-memo">
+                <h3>저장된 메모</h3>
+                <p>{savedMemo}</p>
+              </div>
+            )}
+
+            {/* Memo input form */}
+            <form onSubmit={handleSaveMemo}>
+              <textarea id = 'inputBox'
+                value={memo}
+                onChange={handleMemoInputChange}
+                placeholder="메모를 입력하세요"
+                required
+              />
+              <button id = 'saveBtn' type="submit">메모 저장</button>
+            </form>
+
           </div>
         </div>
       </div>
@@ -141,4 +242,5 @@ const SchedulePage = () => {
   );
 };
 
-export default SchedulePage; 
+export default SchedulePage;
+
