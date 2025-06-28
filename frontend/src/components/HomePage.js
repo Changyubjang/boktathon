@@ -35,7 +35,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div className="home-container">
-        <img src = {logo} alt ="로고 이미지" width='200px'/>
+        <img src = {logo} alt ="로고 이미지" className="logo-image"/>
         
         {/* <h1 className="main-title">트로트 아티스트 팬클럽</h1> */}
         

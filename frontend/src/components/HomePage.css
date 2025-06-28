@@ -17,8 +17,16 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.logo-image {
+  width: 350px; /* 이미지 크기 키우기 */
+  margin-top: 50px; /* 화면 위에서 띄우기 */
+  margin-bottom: 30px; /* 아래 여백 */
+}
+
+
 .search-section {
-  margin-bottom: 50px;
+  margin-bottom: 70px;
+  margin-top: 10px;
 }
 
 .search-form {
@@ -91,7 +99,7 @@
 .artist-image {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 12%;
   margin-bottom: 15px;
   object-fit: cover;
 }
