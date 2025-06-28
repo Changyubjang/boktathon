@@ -1,0 +1,17 @@
+{
+  "name": "bok-monorepo",
+  "version": "1.0.0",
+  "description": "BOK Music Artist Fan Club - Monorepo",
+  "scripts": {
+    "start": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "test": "cd frontend && npm test",
+    "eject": "cd frontend && npm run eject",
+    "install-frontend": "cd frontend && npm install",
+    "install-backend": "cd backend && npm install",
+    "install-all": "npm run install-frontend && npm run install-backend"
+  },
+  "keywords": ["react", "spring-boot", "music", "fan-club"],
+  "author": "BOK Team",
+  "license": "MIT"
+} 
