@@ -1,7 +1,4 @@
-
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './SchedulePage.css';
 import 임영웅 from '../img/profile/임영웅.jpg.webp';
@@ -16,33 +13,16 @@ const SchedulePage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [memo, setMemo] = useState(''); // For storing the memo
   const [savedMemo, setSavedMemo] = useState(''); // To store and display the saved memo
-  const [scheduleData, setScheduleData] = useState(null); // Store the fetched schedule data
-  const [schedule, setSchedule] = useState(null); // State for the schedule
-
+  const [schedule, setSchedule] = useState([]); // State for the schedule (list of schedules)
+  
   // 샘플 아티스트 데이터
   const artistData = {
     1: { name: '임영웅', image: `${임영웅}` },
     2: { name: '김호중', image: `${김호중}` },
     3: { name: '박지현', image: `${박지현}` },
-    4: { name: '형탁', image: `${영탁}` },
+    4: { name: '영탁', image: `${영탁}` },
     5: { name: '이찬원', image: `${이찬원}` },
   };
-
-  const data1 ={
-    "success": true,
-    "code": 200,
-    "message": "일정 및 메모 조회 성공",
-    "data": {
-      "artist": "임영웅",
-      "date": "2024-12-15",
-      "schedule": "서울 KSPO DOME 콘서트",
-      "memo": {
-        "id": 7,
-        "username": "지윤",
-        "description": "이ㅏㅣ리ㅏ뤼ㅏ리라ㅜ"
-      }
-    }
-  }
 
   const artist = artistData[id] || { name: 'Unknown Artist', image: 'https://via.placeholder.com/200x200/999/white?text=Unknown' };
 
@@ -70,38 +50,48 @@ const SchedulePage = () => {
     return dates;
   };
 
-  const handleDateClick = async (date) => {
+  const getRandomSchedules = () => {
+    const schedules = [
+      "서울 KSPO DOME 콘서트",
+      "전국 투어 공연",
+      "팬미팅",
+      "사인회",
+      "특별 방송",
+      "라이브 공연",
+      "새 앨범 발표",
+      "인터뷰",
+    ];
+    const randomSchedules = [];
+    const numSchedules = Math.floor(Math.random() * 3) + 1; // Pick between 1 to 3 schedules
+
+    for (let i = 0; i < numSchedules; i++) {
+      const randomIndex = Math.floor(Math.random() * schedules.length);
+      randomSchedules.push(schedules[randomIndex]);
+    }
+    return randomSchedules;
+  };
+
+  const handleDateClick = (date) => {
     if (date) {
       setSelectedDate(date);
-
-      // API 호출 (GET 요청)
-      try {
-        const response = await fetch('https://your-api-endpoint.com', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(selectedDate.toLocaleDateString('ko-KR')), // JSON 데이터로 변환하여 전송
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          setScheduleData(data); // 업데이트된 일정 데이터 저장
-          const schedule1 = data.meals[0].strMeal;
-          const memo1 = data.meals[0].strInstructions;
-          console.log(schedule1);
-          console.log(memo1);
-
-          setSchedule(data1.data.schedule); // 상태 업데이트
-          setSavedMemo(data1.data.memo.description); // 상태 업데이트 (description을 savedMemo에 설정)
-          console.log(data1.data.schedule); // 로그로 확인
-        } else {
-          alert('일정 데이터를 가져오는 데 실패했습니다.');
-        }
-      } catch (error) {
-        alert('API 호출 중 오류가 발생했습니다.');
+      const formattedDate = formatDate(date);
+      
+      // Check if schedule already exists in localStorage for this date
+      const storedSchedule = localStorage.getItem(formattedDate);
+      
+      if (storedSchedule) {
+        // If schedule is already stored, load it
+        setSchedule(JSON.parse(storedSchedule)); 
+      } else {
+        // Otherwise, generate a new schedule and store it
+        const newSchedule = getRandomSchedules();
+        localStorage.setItem(formattedDate, JSON.stringify(newSchedule)); // Save it in localStorage
+        setSchedule(newSchedule); // Set the newly generated schedule
       }
+
+      // Load the memo from localStorage for this date
+      const savedMemo = localStorage.getItem(formattedDate + '-memo');
+      setSavedMemo(savedMemo || ''); // If no memo exists, set to an empty string
     }
   };
 
@@ -112,53 +102,16 @@ const SchedulePage = () => {
   const handleMemoInputChange = (e) => {
     setMemo(e.target.value);
   };
-  // const formattedDate = formatDate(selectedDate);
 
-
-const handleSaveMemo = async (e) => {
-  e.preventDefault();
-
-  console.log(selectedDate.toLocaleDateString('ko-KR'));
-
-  // selectedDate를 문자열 형식으로 변환 (YYYY-MM-DD 형식)
-  
-  // 메모를 description으로 설정하여 요청 데이터 준비
-  const postData = {
-    username: "지윤",
-    date: selectedDate.toLocaleDateString('ko-KR'),
-    artist: "임영웅",
-    description: memo, // 입력한 메모를 description에 설정
+  const handleSaveMemo = (e) => {
+    e.preventDefault();
+    const formattedDate = formatDate(selectedDate);
+    
+    // Save the memo in localStorage using the selected date as the key (with '-memo' suffix)
+    localStorage.setItem(formattedDate + '-memo', memo);
+    setSavedMemo(memo); // Immediately update the saved memo state
+    setMemo(''); // Clear the input field
   };
-
-  try {
-    // POST 요청을 보내는 코드
-    const response = await fetch('https://your-api-endpoint.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData), // JSON 데이터로 변환하여 전송
-    });
-
-    if (response.ok) {
-      alert('메모가 저장되었습니다.');
-
-      // 메모 저장 후 화면에 바로 반영
-      setSavedMemo(memo); // 메모 상태 업데이트
-      setMemo(''); // 메모 입력 필드 초기화
-
-      // 저장된 메모를 가져오기 위한 API 호출
-      await handleDateClick(selectedDate); // 해당 날짜의 데이터를 다시 가져옴
-    } else {
-      alert('메모 저장에 실패했습니다.');
-    }
-  } catch (error) {
-    alert('API 호출 중 오류가 발생했습니다.');
-  }
-};
-
-
-
 
   return (
     <div className="schedule-page">
@@ -196,7 +149,7 @@ const handleSaveMemo = async (e) => {
                     key={index}
                     className={`calendar-date ${date ? 'has-date' : 'empty'} ${
                       date && formatDate(date) === formatDate(selectedDate) ? 'selected' : ''
-                    } ${date && scheduleData?.data?.schedule && formatDate(date) === formatDate(selectedDate) ? 'has-schedule' : ''}`}
+                    }`}
                     onClick={() => handleDateClick(date)}
                   >
                     {date ? date.getDate() : ''}
@@ -208,9 +161,13 @@ const handleSaveMemo = async (e) => {
 
           <div className="schedule-details">
             <h3>선택된 날짜: {selectedDate.toLocaleDateString('ko-KR')}</h3>
-            {schedule ? (
+            {schedule.length > 0 ? (
               <div className="schedule-item">
-                <div>{schedule}</div>
+                <ul>
+                  {schedule.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
               </div>
             ) : (
               <p className="no-schedule">해당 날짜에 일정이 없습니다.</p>
@@ -226,15 +183,15 @@ const handleSaveMemo = async (e) => {
 
             {/* Memo input form */}
             <form onSubmit={handleSaveMemo}>
-              <textarea id = 'inputBox'
+              <textarea
+                id="inputBox"
                 value={memo}
                 onChange={handleMemoInputChange}
                 placeholder="메모를 입력하세요"
                 required
               />
-              <button id = 'saveBtn' type="submit">메모 저장</button>
+              <button id="saveBtn" type="submit">메모 저장</button>
             </form>
-
           </div>
         </div>
       </div>
@@ -243,4 +200,3 @@ const handleSaveMemo = async (e) => {
 };
 
 export default SchedulePage;
-
