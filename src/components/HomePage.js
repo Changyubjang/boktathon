@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
+import logo from '../img/logo.png';
+
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,7 +30,8 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div className="home-container">
-        <h1 className="main-title">트로트 아티스트 팬클럽</h1>
+        <img src = {logo} alt ="로고 이미지" width='200px'/>
+        {/* <h1 className="main-title">트로트 아티스트 팬클럽</h1> */}
         
         <div className="search-section">
           <form onSubmit={handleSearch} className="search-form">
