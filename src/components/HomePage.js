@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 import logo from '../img/logo.png';
+import 임영웅 from '../img/profile/임영웅.jpg.webp';
+import 김호중 from '../img/profile/김호중.jpg';
+import 영탁 from '../img/profile/영탁.jpeg';
+import 이찬원 from '../img/profile/이찬원.jpg';
+import 박지현 from '../img/profile/박지현.webp';
 
 
 const HomePage = () => {
@@ -10,11 +15,11 @@ const HomePage = () => {
 
   // 샘플 찜한 아티스트 데이터
   const favoriteArtists = [
-    { id: 1, name: '임영웅', image: 'https://via.placeholder.com/100x100/FF6B6B/white?text=임영웅' },
-    { id: 2, name: '김호중', image: 'https://via.placeholder.com/100x100/4ECDC4/white?text=김호중' },
-    { id: 3, name: '박지현', image: 'https://via.placeholder.com/100x100/45B7D1/white?text=박지현' },
-    { id: 4, name: '형탁', image: 'https://via.placeholder.com/100x100/96CEB4/white?text=형탁' },
-    { id: 5, name: '이찬원', image: 'https://via.placeholder.com/100x100/FFA726/white?text=이찬원' },
+    { id: 1, name: '임영웅', image: `${임영웅}` },
+    { id: 2, name: '김호중', image: `${김호중}` },
+    { id: 3, name: '박지현', image: `${박지현}` },
+    { id: 4, name: '영탁', image: `${영탁}` },
+    { id: 5, name: '이찬원', image: `${이찬원}` },
   ];
 
   const handleArtistClick = (artistId) => {
@@ -31,6 +36,7 @@ const HomePage = () => {
     <div className="home-page">
       <div className="home-container">
         <img src = {logo} alt ="로고 이미지" width='200px'/>
+        
         {/* <h1 className="main-title">트로트 아티스트 팬클럽</h1> */}
         
         <div className="search-section">
@@ -49,7 +55,7 @@ const HomePage = () => {
         </div>
 
         <div className="favorites-section">
-          <h2 className="favorites-title">내가 찜한 트로트 아티스트</h2>
+          <h2 className="favorites-title">아티스트</h2>
           <div className="artists-grid">
             {favoriteArtists.map((artist) => (
               <div
