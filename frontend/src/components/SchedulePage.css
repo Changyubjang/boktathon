@@ -45,7 +45,7 @@
 }
 
 .artist-info {
-  background: rgba(255, 255, 255, 0.95);
+  background: #FFE7D4;
   border-radius: 20px;
   padding: 30px;
   text-align: center;
@@ -90,7 +90,7 @@
 }
 
 .calendar-grid {
-  border: 1px solid #BDA79D ;
+  border: 1px solid #d8b2a2 ;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -98,7 +98,7 @@
 .calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  background: #f8f9fa;
+  background: #d8b2a2 ;
 }
 
 .calendar-days div {
@@ -106,7 +106,7 @@
   text-align: center;
   font-weight: bold;
   color: #333;
-  border-bottom: 1px solid #BDA79D ;
+  border-bottom: 1px solid #d8b2a2 ;
 }
 
 .calendar-dates {
@@ -115,13 +115,18 @@
 }
 
 .calendar-date {
-  padding: 15px;
-  text-align: center;
+  padding: 0; /* 기존 padding 제거 */
+  aspect-ratio: 1 / 1; /* ✅ 정사각형 만들기 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  border-right: 1px solid #BDA79D ;
-  border-bottom: 1px solid #BDA79D ;
+  border-right: 1px solid #d8b2a2;
+  border-bottom: 1px solid #d8b2a2;
   transition: background 0.3s ease;
+  font-size: 1rem; /* 원하면 글자 크기도 조정 */
 }
+
 
 .calendar-date.empty {
   background: #f8f9fa;
@@ -149,7 +154,7 @@
 }
 
 .schedule-details {
-  border-top: 2px solid #ddd;
+  border-top: 2px solid #BDA79D;
   padding-top: 20px;
 }
 
