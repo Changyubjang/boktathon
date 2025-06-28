@@ -1,6 +1,6 @@
 .artist-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg,#FFCAB3     0%, #FFCAB3     100%);
   padding: 20px;
 }
 
@@ -57,33 +57,35 @@
 .action-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
 }
 
 .action-button {
-  padding: 20px 40px;
+  padding: 40px 80px;
   border: none;
   border-radius: 15px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 20px;
+  min-width: 200px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-width: 150px;
 }
 
 .schedule-btn {
-  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(45deg, #412f27    , #412f27    );
   color: white;
 }
 
 .chat-btn {
-  background: linear-gradient(45deg, #4ecdc4, #6ee7df);
+  background: linear-gradient(45deg, #280457  , #280457  );
   color: white;
 }
 
 .shopping-btn {
-  background: linear-gradient(45deg, #45b7d1, #67c9e0);
+  background: linear-gradient(45deg, #024525  , #024525  );
   color: white;
 }
 

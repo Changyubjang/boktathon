@@ -1,6 +1,6 @@
 .schedule-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg,#FFCAB3     0%, #FFCAB3     100%);
   padding: 20px;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .calendar-section {
-  background: rgba(255, 255, 255, 0.95);
+  background: #FFE7D4 ;
   border-radius: 20px;
   padding: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -90,7 +90,7 @@
 }
 
 .calendar-grid {
-  border: 1px solid #ddd;
+  border: 1px solid #BDA79D ;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -106,7 +106,7 @@
   text-align: center;
   font-weight: bold;
   color: #333;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #BDA79D ;
 }
 
 .calendar-dates {
@@ -118,8 +118,8 @@
   padding: 15px;
   text-align: center;
   cursor: pointer;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #BDA79D ;
+  border-bottom: 1px solid #BDA79D ;
   transition: background 0.3s ease;
 }
 
