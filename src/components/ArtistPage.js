@@ -8,10 +8,11 @@ const ArtistPage = () => {
 
   // 샘플 아티스트 데이터
   const artistData = {
-    1: { name: 'BTS', image: 'https://via.placeholder.com/300x300/FF6B6B/white?text=BTS' },
-    2: { name: 'BLACKPINK', image: 'https://via.placeholder.com/300x300/4ECDC4/white?text=BLACKPINK' },
-    3: { name: 'TWICE', image: 'https://via.placeholder.com/300x300/45B7D1/white?text=TWICE' },
-    4: { name: 'IU', image: 'https://via.placeholder.com/300x300/96CEB4/white?text=IU' },
+    1: { name: '임영웅', image: 'https://via.placeholder.com/300x300/FF6B6B/white?text=임영웅' },
+    2: { name: '김호중', image: 'https://via.placeholder.com/300x300/4ECDC4/white?text=김호중' },
+    3: { name: '박지현', image: 'https://via.placeholder.com/300x300/45B7D1/white?text=박지현' },
+    4: { name: '형탁', image: 'https://via.placeholder.com/300x300/96CEB4/white?text=형탁' },
+    5: { name: '이찬원', image: 'https://via.placeholder.com/300x300/FFA726/white?text=이찬원' },
   };
 
   const artist = artistData[id] || { name: 'Unknown Artist', image: 'https://via.placeholder.com/300x300/999/white?text=Unknown' };

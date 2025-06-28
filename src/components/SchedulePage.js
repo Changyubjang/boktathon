@@ -9,20 +9,23 @@ const SchedulePage = () => {
 
   // 샘플 아티스트 데이터
   const artistData = {
-    1: { name: 'BTS', image: 'https://via.placeholder.com/200x200/FF6B6B/white?text=BTS' },
-    2: { name: 'BLACKPINK', image: 'https://via.placeholder.com/200x200/4ECDC4/white?text=BLACKPINK' },
-    3: { name: 'TWICE', image: 'https://via.placeholder.com/200x200/45B7D1/white?text=TWICE' },
-    4: { name: 'IU', image: 'https://via.placeholder.com/200x200/96CEB4/white?text=IU' },
+    1: { name: '임영웅', image: 'https://via.placeholder.com/200x200/FF6B6B/white?text=임영웅' },
+    2: { name: '김호중', image: 'https://via.placeholder.com/200x200/4ECDC4/white?text=김호중' },
+    3: { name: '박지현', image: 'https://via.placeholder.com/200x200/45B7D1/white?text=박지현' },
+    4: { name: '형탁', image: 'https://via.placeholder.com/200x200/96CEB4/white?text=형탁' },
+    5: { name: '이찬원', image: 'https://via.placeholder.com/200x200/FFA726/white?text=이찬원' },
   };
 
   const artist = artistData[id] || { name: 'Unknown Artist', image: 'https://via.placeholder.com/200x200/999/white?text=Unknown' };
 
-  // 샘플 일정 데이터
+  // 샘플 일정 데이터 (트로트 관련)
   const scheduleData = {
-    '2024-01-15': { title: '콘서트', location: '올림픽공원', time: '19:00' },
+    '2024-01-15': { title: '트로트 콘서트', location: '올림픽공원', time: '19:00' },
     '2024-01-20': { title: '팬사인회', location: '코엑스몰', time: '14:00' },
     '2024-01-25': { title: '앨범 발매', location: '온라인', time: '00:00' },
-    '2024-02-01': { title: '방송 출연', location: 'KBS', time: '20:00' },
+    '2024-02-01': { title: '방송 출연', location: 'KBS 트로트의 민족', time: '20:00' },
+    '2024-02-10': { title: '지방 공연', location: '부산 해운대', time: '18:00' },
+    '2024-02-15': { title: '팬미팅', location: '서울 시청', time: '15:00' },
   };
 
   const handleBackClick = () => {

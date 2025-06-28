@@ -9,43 +9,53 @@ const ShoppingPage = () => {
   // 샘플 아티스트 데이터
   const artistData = {
     1: { 
-      name: 'BTS', 
-      image: 'https://via.placeholder.com/300x400/FF6B6B/white?text=BTS\nPOSTER',
+      name: '임영웅', 
+      image: 'https://via.placeholder.com/300x400/FF6B6B/white?text=임영웅\nPOSTER',
       products: [
-        { id: 1, name: 'BTS 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/FF6B6B/white?text=POSTER' },
-        { id: 2, name: 'BTS 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/FF8E8E/white?text=CD' },
-        { id: 3, name: 'BTS 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/FFB3B3/white?text=KIT' },
-        { id: 4, name: 'BTS 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/FFD8D8/white?text=TSHIRT' },
+        { id: 1, name: '임영웅 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/FF6B6B/white?text=POSTER' },
+        { id: 2, name: '임영웅 트로트 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/FF8E8E/white?text=CD' },
+        { id: 3, name: '임영웅 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/FFB3B3/white?text=KIT' },
+        { id: 4, name: '임영웅 트로트 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/FFD8D8/white?text=TSHIRT' },
       ]
     },
     2: { 
-      name: 'BLACKPINK', 
-      image: 'https://via.placeholder.com/300x400/4ECDC4/white?text=BLACKPINK\nPOSTER',
+      name: '김호중', 
+      image: 'https://via.placeholder.com/300x400/4ECDC4/white?text=김호중\nPOSTER',
       products: [
-        { id: 1, name: 'BLACKPINK 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/4ECDC4/white?text=POSTER' },
-        { id: 2, name: 'BLACKPINK 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/6EE7DF/white?text=CD' },
-        { id: 3, name: 'BLACKPINK 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/8EF1E9/white?text=KIT' },
-        { id: 4, name: 'BLACKPINK 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/AEFBF3/white?text=TSHIRT' },
+        { id: 1, name: '김호중 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/4ECDC4/white?text=POSTER' },
+        { id: 2, name: '김호중 트로트 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/6EE7DF/white?text=CD' },
+        { id: 3, name: '김호중 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/8EF1E9/white?text=KIT' },
+        { id: 4, name: '김호중 트로트 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/AEFBF3/white?text=TSHIRT' },
       ]
     },
     3: { 
-      name: 'TWICE', 
-      image: 'https://via.placeholder.com/300x400/45B7D1/white?text=TWICE\nPOSTER',
+      name: '박지현', 
+      image: 'https://via.placeholder.com/300x400/45B7D1/white?text=박지현\nPOSTER',
       products: [
-        { id: 1, name: 'TWICE 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/45B7D1/white?text=POSTER' },
-        { id: 2, name: 'TWICE 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/67C9E0/white?text=CD' },
-        { id: 3, name: 'TWICE 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/89DBEF/white?text=KIT' },
-        { id: 4, name: 'TWICE 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/ABEDFE/white?text=TSHIRT' },
+        { id: 1, name: '박지현 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/45B7D1/white?text=POSTER' },
+        { id: 2, name: '박지현 트로트 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/67C9E0/white?text=CD' },
+        { id: 3, name: '박지현 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/89DBEF/white?text=KIT' },
+        { id: 4, name: '박지현 트로트 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/ABEDFE/white?text=TSHIRT' },
       ]
     },
     4: { 
-      name: 'IU', 
-      image: 'https://via.placeholder.com/300x400/96CEB4/white?text=IU\nPOSTER',
+      name: '형탁', 
+      image: 'https://via.placeholder.com/300x400/96CEB4/white?text=형탁\nPOSTER',
       products: [
-        { id: 1, name: 'IU 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/96CEB4/white?text=POSTER' },
-        { id: 2, name: 'IU 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/B8E0C6/white?text=CD' },
-        { id: 3, name: 'IU 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/DAF2D8/white?text=KIT' },
-        { id: 4, name: 'IU 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/FCF4EA/white?text=TSHIRT' },
+        { id: 1, name: '형탁 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/96CEB4/white?text=POSTER' },
+        { id: 2, name: '형탁 트로트 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/B8E0C6/white?text=CD' },
+        { id: 3, name: '형탁 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/DAF2D8/white?text=KIT' },
+        { id: 4, name: '형탁 트로트 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/FCF4EA/white?text=TSHIRT' },
+      ]
+    },
+    5: { 
+      name: '이찬원', 
+      image: 'https://via.placeholder.com/300x400/FFA726/white?text=이찬원\nPOSTER',
+      products: [
+        { id: 1, name: '이찬원 공식 포스터', price: '15,000원', image: 'https://via.placeholder.com/150x200/FFA726/white?text=POSTER' },
+        { id: 2, name: '이찬원 트로트 앨범 CD', price: '25,000원', image: 'https://via.placeholder.com/150x200/FFB74D/white?text=CD' },
+        { id: 3, name: '이찬원 팬클럽 키트', price: '35,000원', image: 'https://via.placeholder.com/150x200/FFCC80/white?text=KIT' },
+        { id: 4, name: '이찬원 트로트 티셔츠', price: '45,000원', image: 'https://via.placeholder.com/150x200/FFE0B2/white?text=TSHIRT' },
       ]
     },
   };
@@ -80,7 +90,7 @@ const ShoppingPage = () => {
         </div>
 
         <div className="products-section">
-          <h2 className="products-title">제품 정보</h2>
+          <h2 className="products-title">트로트 상품 정보</h2>
           <div className="products-grid">
             {artist.products.map((product) => (
               <div key={product.id} className="product-card">
