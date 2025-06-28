@@ -37,7 +37,7 @@ const HomePage = () => {
           <form onSubmit={handleSearch} className="search-form">
             <input
               type="text"
-              placeholder="트로트 아티스트를 검색해보세요..."
+              placeholder="아티스트를 검색해보세요..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
@@ -49,7 +49,7 @@ const HomePage = () => {
         </div>
 
         <div className="favorites-section">
-          <h2 className="favorites-title">내가 찜한 트로트 아티스트</h2>
+          <h2 className="favorites-title">아티스트</h2>
           <div className="artists-grid">
             {favoriteArtists.map((artist) => (
               <div
